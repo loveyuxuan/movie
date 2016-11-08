@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <header>
+            <a href="#">影城<span></span></a>
+            <p>国际影城</p>
+            <a href="#"></a>
+        </header>
+        <div class="duiluo">影院重新开业，会员卡购票可享5折优惠</div>
+        <div class="nav swiper-container">
+
+        </div>
+        <textarea name="" id="mtql" cols="30" rows="10" style="display: none;">
+                 {{each list}}
+                 {{ if $index==0}}
+                 <article class="list-one">
+                 {{else}}
+                  <article class="list-one hide">
+                 {{/if}}
+                <div class="yu-item">
+                   <p><span>{{$value.movie_name}}</span><span>片长: 97分钟</span><span>8.7分</span></p>
+                   <p>{{$value.movie_desc}}</p>
+
+               </div>
+                <div class="time-item">中午12点之前，会员统一价25元，限购2张<span class="right-arrow"></span></div>
+                <div class="time-lists swiper-container">
+                    <ul class="ul-item swiper-wrapper">
+                        {{each $value.days as val ind}}
+                        {{if ind!==0}}
+                        <li class="item-li swiper-slide">{{val.show_date}}</li>
+                        {{else}}
+                        <li class="item-li swiper-slide active">{{val.show_date}}</li>
+                        {{/if}}
+
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="tishi"><span>!</span>温馨提示:电影开场前30分钟关闭在线售票</div>
+                <div class="info-list">
+               {{each $value.shows}}
+                <table>
+                    {{each $value as content i}}
+                   <tr>
+                       <td>
+                           <p class="data-item">{{content.start_time}}</p>
+                           <p>{{content.end_time}}散场</p>
+                       </td>
+                       <td>
+                           <p class="data-item">{{content.language}}</p>
+                           <p>{{content.hall_name}}</p>
+                       </td>
+                       <td>
+                           <p class="price"><span>￥{{content.market_price}}</span></p>
+                           <p class="huiyuan">
+                               <em>会员</em>
+                               <em>￥{{content.member_price}}</em>
+                           </p>
+                           <p>
+                               影院价￥{{content.price}}
+                           </p>
+                       </td>
+                       <td>
+                           {{if content.is_all_sold==0}}
+                             <p class="chose check">次场选票</p>
+                           {{else}}
+                             <p class="chose">次场过期</p>
+                           {{/if}}
+                       </td>
+                   </tr>
+
+                    {{/each}}
+               </table>
+              {{/each}}
+                </div>
+               </article>
+               {{ /each }}
+         </textarea>
+        <div class="main-lists" id="main-lists">
+            <div class="main-item">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="js/setfontsize.js">
+
+
+</script>
+
+<script src="lib/require.js" data-main="js/index"></script>
